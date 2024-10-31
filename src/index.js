@@ -1,3 +1,7 @@
 import "./styles.css"
+import {taskLogic} from "./taskLogic"
 
-console.log("test")
+
+document.addEventListener('DOMContentLoaded', () => {
+  taskLogic();
+});

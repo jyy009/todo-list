@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="page-container">
+      <section id="dash-section"></section>
+      <section id="task-section"></section>
+    </div>
+
+    <!-- task view template-->
+    <template id="task-view-template">
+      <div class="view-header-wrapper">
+        <h2>Today</h2>
+        <button class="add-task-button">
+          <i class="icon-plus-circled"></i>Add Task
+        </button>
+      </div>
+    </template>
+
+    <!-- task item template-->
+
+    <template id="task-item-template">
+      <form type="submit" id="task-form">
+        <div class="task-input-wrapper">
+          <input type="text" name="task-title" id="" />
+          <input type="text" name="task-description" id="" />
+        </div>
+        <input type="date" name="task-date" />
+        <label>
+          Priority
+          <input type="checkbox" name="task-priority" />
+        </label>
+        <label>
+          Done
+          <input type="checkbox" name="task-complete" />
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    </template>
+  </body>
+</html>
