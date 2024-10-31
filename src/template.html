@@ -26,24 +26,34 @@
     </template>
 
     <!-- task item template-->
-
     <template id="task-item-template">
-      <form type="submit" id="task-form">
+      <form id="task-form">
         <div class="task-input-wrapper">
-          <input type="text" name="task-title" id="" />
-          <input type="text" name="task-description" id="" />
+          <input type="text" name="title" />
+          <input type="text" name="description" />
         </div>
-        <input type="date" name="task-date" />
+        <input type="date" name="date" />
         <label>
           Priority
-          <input type="checkbox" name="task-priority" />
+          <input type="checkbox" name="priority" />
         </label>
         <label>
           Done
-          <input type="checkbox" name="task-complete" />
+          <input type="checkbox" name="complete" />
         </label>
         <button type="submit">Add</button>
       </form>
+    </template>
+
+    <!-- task display template-->
+    <template id="task-display-template">
+      <h3 class="project-header"></h3>
+      <div class="task-wrapper">
+        <p>title</p>
+        <p>description</p>
+        <span>time</span>
+
+      </div>
     </template>
   </body>
 </html>
