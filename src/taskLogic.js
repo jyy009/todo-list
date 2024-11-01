@@ -18,36 +18,34 @@ export const taskLogic = () => {
       isPriority: false,
       isChecked: false,
     },
-  ];
+  ].map((task) => {
+    return new Task(
+      task.title,
+      task.description,
+      task.dueDate,
+      task.isPriority,
+      task.isChecked,
+      crypto.randomUUID()
+    );
 
-  taskList.map(
-    (task) =>
-      new Task(
-        task.title,
-        task.description,
-        task.dueDate,
-        task.isPriority,
-        task.id
-      )
-  );
-  console.log("task list:", taskList);
+  });
 
-  //display task view
+  console.log("initial task list:", taskList);
+
+  //display task view template
   const taskViewTemplate = document.getElementById("task-view-template");
   const clone = taskViewTemplate.content.cloneNode(true);
   const taskSection = document.querySelector("#task-section");
   taskSection.appendChild(clone);
 
-  //display task form
+  //display task form template
   const taskFormTemplate = document.getElementById("task-form-template");
   const taskItemClone = taskFormTemplate.content.cloneNode(true);
   taskSection.appendChild(taskItemClone);
   const taskForm = document.querySelector("#task-form");
 
   const addTaskToList = (newTask) => {
-    // const newTask = new Task(title, description, dueDate, isPriority, isChecked, id)
     taskList.push(newTask);
-    // console.log(newTask instanceof Task)
     console.log(taskList);
   };
 
@@ -73,6 +71,8 @@ export const taskLogic = () => {
     resetTaskForm();
   };
 
-  // const taskForm = document.querySelector("#task-form")
+
+
+
   taskForm.addEventListener("submit", addTaskFromForm);
 };
