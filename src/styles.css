@@ -5,8 +5,12 @@
 }
 
 :root {
-  --main-bg-color: #D2B8B8;
+  --main-bg-color: #d2b8b8;
 }
 body {
-  background-color: var(--main-bg-color)
+  background-color: var(--main-bg-color);
+}
+
+#dash-section {
+  padding-top: 50px;
 }

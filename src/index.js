@@ -1,7 +1,8 @@
-import "./styles.css"
-import {taskLogic} from "./taskLogic"
+import "./styles.css";
+// import { addTaskFromForm } from "./taskLogic";
+// import { Project } from "./projectLogic"; 
+import { taskUI } from "./taskUI"
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  taskLogic();
+document.addEventListener("DOMContentLoaded", () => {
+taskUI()
 });
