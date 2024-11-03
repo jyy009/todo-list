@@ -1,16 +1,16 @@
 import {
   addTaskFromForm,
-  projectsList,
-  displayProjects,
-  taskList,
-  renderTasks
+  addProjectToSelect,
+  Project,
+  renderTasks,
+  addProjectFromForm,
+  renderProject,
 } from "./taskLogic";
 
 export const taskUI = () => {
-  renderTasks()
+  renderTasks();
   const taskSection = document.querySelector("#task-section");
   const dashSection = document.querySelector("#dash-section");
-  
 
   //display task view template
   const taskViewTemplate = document.getElementById("task-view-template");
@@ -26,14 +26,15 @@ export const taskUI = () => {
   const taskForm = document.querySelector("#task-form");
   taskForm.addEventListener("submit", addTaskFromForm);
 
-  //display projects
-  // const projectTemplate = document.getElementById("project-sidebar-template");
-  // const projectClone = projectTemplate.content.cloneNode(true);
-  // dashSection.appendChild(projectClone);
+  //display add project template
+  const addProjTemplate = document.getElementById("add-project-template");
+  const addProjectClone = addProjTemplate.content.cloneNode(true);
+  dashSection.appendChild(addProjectClone);
+  const projForm = document.querySelector("#project-form");
+  projForm.addEventListener("submit", addProjectFromForm);
 
+  //set default project
+  const defaultProject = new Project("default proj");
+  addProjectToSelect(defaultProject);
 
-  //display tasks
-renderTasks = () => {
-
-}
 };

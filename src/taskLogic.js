@@ -10,16 +10,25 @@ export class Task {
     this.id = id;
     this.project = project;
   }
+
+  setProject(project) {
+    this.project = project;
+  }
+
+  getProject() {
+    return this.project;
+  }
 }
+
+export const addTaskToList = (newTask) => {
+  taskList.push(newTask);
+  console.log(taskList);
+};
 
 export class Project {
   constructor(name) {
     this.name = name;
     this.tasks = [];
-  }
-
-  addTask(newTask) {
-    this.tasks.push(newTask);
   }
 }
 
@@ -48,26 +57,6 @@ export let taskList = [
 
 console.log("initial task list:", taskList);
 
-export let projectsList = [new Project("default project")];
-let currentProject = projectsList[0];
-console.log(currentProject);
-
-export const addProject = (name) => {
-  const newProject = new Project(name);
-  projectsList.push(newProject);
-  return newProject;
-};
-
-export const addTaskToProject = (task, projectId) => {
-  const project = projectsList.find((proj) => proj.id === projectId);
-  project.addTask(task);
-};
-
-export const addTaskToList = (newTask) => {
-  taskList.push(newTask);
-  console.log(taskList);
-};
-
 export const resetTaskForm = () => {
   const taskInputs = document.querySelectorAll(".input");
   taskInputs.forEach((input) => (input.value = ""));
@@ -88,9 +77,9 @@ export const renderSingleTask = (newTask) => {
 
 export const renderTasks = () => {
   const dashSection = document.querySelector("#dash-section");
-  dashSection.innerHTML = ""
-  taskList.forEach(renderSingleTask)
-}
+  dashSection.innerHTML = "";
+  taskList.forEach(renderSingleTask);
+};
 
 export const addTaskFromForm = (event) => {
   event.preventDefault();
@@ -106,5 +95,32 @@ export const addTaskFromForm = (event) => {
 
   addTaskToList(newTask);
   renderSingleTask(newTask);
+  resetTaskForm();
+};
+
+export const renderProject = (newProject) => {
+  const dashSection = document.querySelector("#dash-section");
+  const projectTemplate = document.getElementById("project-sidebar-template");
+  const projectClone = projectTemplate.content.cloneNode(true);
+  projectClone.querySelector(".project-button").textContent = newProject.name;
+  dashSection.appendChild(projectClone);
+};
+export const addProjectToSelect = (project) => {
+  const selectElement = document.getElementById("project-select");
+
+  const option = document.createElement("option");
+  option.value = project.name;
+  option.textContent = project.name;
+  selectElement.appendChild(option);
+};
+
+export const addProjectFromForm = (event) => {
+  event.preventDefault();
+
+  const newProject = new Project(event.target.project.value);
+
+  addProjectToSelect(newProject);
+  renderProject(newProject);
+
   resetTaskForm();
 };

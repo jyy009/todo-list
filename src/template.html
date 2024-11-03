@@ -18,10 +18,7 @@
     <!-- task view template-->
     <template id="task-view-template">
       <div class="view-header-wrapper">
-        <h2>Today</h2>
-        <button class="add-task-button">
-          <i class="icon-plus-circled"></i>Add Task
-        </button>
+        <h2>Task list</h2>
       </div>
     </template>
 
@@ -41,9 +38,8 @@
           Done
           <input class="input" type="checkbox" name="complete" />
         </label> -->
-        <select name="project" class="input">
-          <option value="work">Work</option>
-          <option value="home">Home</option>
+        <select name="project" id="project-select">
+          <option disabled>Select a project</option>
         </select>
         <button type="submit">Add</button>
       </form>
@@ -62,13 +58,20 @@
     <!-- Project sidebar template-->
     <template id="project-sidebar-template">
       <div class="project-wrapper">
+        <h3>Projects</h3>
         <button class="project-button">work</button>
       </div>
-
     </template>
 
-
-
-
+    <!-- Add project template-->
+    <template id="add-project-template">
+      <form id="project-form">
+        <label
+          >Project name
+          <input class="input" type="text" name="project" />
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    </template>
   </body>
 </html>
