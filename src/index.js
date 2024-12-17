@@ -1,8 +1,12 @@
 import "./styles.css";
-// import { addTaskFromForm } from "./taskLogic";
-// import { Project } from "./projectLogic"; 
-import { taskUI } from "./taskUI"
+import { taskLogic, taskList  } from "./taskLogic";
+import { taskUI } from "./taskUI";
 
 document.addEventListener("DOMContentLoaded", () => {
-taskUI()
+  const display = taskUI()
+  display.initializeForm()
+  display.displayTasks(taskList)
+
+  const logic = taskLogic()
+  logic.handleFormSubmit()
 });

@@ -11,6 +11,13 @@ body {
   background-color: var(--main-bg-color);
 }
 
-#dash-section {
-  padding-top: 50px;
+#page-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+#task-form {
+  display: flex;
+  flex-direction: column;
 }

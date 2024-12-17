@@ -3,68 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    /> -->
     <title>Todo List</title>
   </head>
   <body>
-    <div class="page-container">
+    <div id="page-container">
+      <h2>Task list</h2>
       <section id="task-section"></section>
       <section id="dash-section"></section>
     </div>
 
-    <!-- task view template-->
-    <template id="task-view-template">
-      <div class="view-header-wrapper">
-        <h2>Task list</h2>
-      </div>
-    </template>
-
     <!-- task form template-->
     <template id="task-form-template">
       <form id="task-form">
-        <div class="task-input-wrapper">
-          <input class="input" type="text" name="title" />
-          <input class="input" type="text" name="description" />
-        </div>
-        <input class="input" type="date" name="date" />
-        <!-- <label>
-          Priority
-          <input class="input" type="checkbox" name="priority" />
-        </label>
-        <label>
-          Done
-          <input class="input" type="checkbox" name="complete" />
-        </label> -->
+        <label for="task">Task</label>
+        <input id="task" class="task-input" type="text" name="title" />
+
+        <label for="desription">Notes</label>
+        <input
+          id="desription"
+          class="description-input"
+          type="text"
+          name="description"
+        />
+
+        <label for="due-date">Due</label>
+        <input id="due-date" class="input" type="date" name="date" />
+
+        <label for="priority">Priority</label>
+        <input id="priority" class="input" type="checkbox" name="priority" />
+
+        <label for="project-select">Project</label>
         <select name="project" id="project-select">
           <option disabled>Select a project</option>
         </select>
+
         <button type="submit">Add</button>
       </form>
     </template>
 
     <!-- task display template-->
     <template id="task-display-template">
-      <!-- <h3 class="task-header">Tasks</h3> -->
       <div class="task-wrapper">
-        <p class="task-title">title</p>
-        <p class="task-description">description</p>
-        <span class="task-due">time</span>
+        <p class="task-title"></p>
+        <p class="task-description"></p>
+        <p class="task-due"></p>
+        <p class="task-priority"></p>
       </div>
     </template>
 
     <!-- Project sidebar template-->
     <template id="project-sidebar-template">
       <div class="project-wrapper">
-        <h3>Projects</h3>
         <button class="project-button">work</button>
       </div>
     </template>
 
     <!-- Add project template-->
     <template id="add-project-template">
+      <h3>Projects</h3>
       <form id="project-form">
         <label
           >Project name
