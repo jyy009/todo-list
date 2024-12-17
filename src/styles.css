@@ -17,7 +17,19 @@ body {
   display: flex;
 }
 
+#dash-wrapper {
+  display: flex;
+  flex-direction: column;
+
+}
+
 #task-form {
   display: flex;
   flex-direction: column;
+}
+
+#dash-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
 }

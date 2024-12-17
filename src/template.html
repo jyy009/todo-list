@@ -8,8 +8,12 @@
   <body>
     <div id="page-container">
       <h2>Task list</h2>
-      <section id="task-section"></section>
-      <section id="dash-section"></section>
+      <div id="dash-wrapper">
+        <section id="task-section"></section>
+        <section id="dash-section"></section>
+        <section id="project-section"></section>
+        
+      </div>
     </div>
 
     <!-- task form template-->
@@ -30,13 +34,18 @@
         <input id="due-date" class="input" type="date" name="date" />
 
         <label for="priority">Priority</label>
-        <input id="priority" class="input" type="checkbox" name="priority" />
+        <input
+          id="priority"
+          class="priority-input"
+          type="checkbox"
+          name="priority"
+        />
 
         <label for="project-select">Project</label>
         <select name="project" id="project-select">
           <option disabled>Select a project</option>
+          <option>Test project</option>
         </select>
-
         <button type="submit">Add</button>
       </form>
     </template>
@@ -51,21 +60,17 @@
       </div>
     </template>
 
-    <!-- Project sidebar template-->
-    <template id="project-sidebar-template">
-      <div class="project-wrapper">
-        <button class="project-button">work</button>
-      </div>
-    </template>
-
     <!-- Add project template-->
-    <template id="add-project-template">
+    <template id="project-template">
       <h3>Projects</h3>
       <form id="project-form">
-        <label
-          >Project name
-          <input class="input" type="text" name="project" />
-        </label>
+        <label for="project-input">Project name </label>
+        <input
+          id="project-input"
+          class="input"
+          type="text"
+          name="formProject"
+        />
         <button type="submit">Add</button>
       </form>
     </template>

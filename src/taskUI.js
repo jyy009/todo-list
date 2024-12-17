@@ -14,7 +14,9 @@ export const taskUI = () => {
     taskSection.appendChild(taskFormClone);
   }
 
-  
+  const clearForm = () => {
+
+  }
 
   //display task template
   const displayTasks = (array) => {
@@ -40,10 +42,28 @@ export const taskUI = () => {
     });
   };
 
+  //display project template
+  const initializeProject = () => {
+    const projectSection = document.getElementById("project-section")
   
+  const projectTemplate = document.getElementById("project-template")
+  const projectClone = projectTemplate.content.cloneNode(true)
 
+  projectSection.appendChild(projectClone)
+  }
+
+  //display projects
+  const displayProjects = (value) => {
+    const projectSection = document.getElementById("project-section")
+    const p = document.createElement("p")
+    p.classList.toggle("project-name")
+    p.textContent = value
+    projectSection.appendChild(p)
+  }
   // displayTasks(taskList)
-  return { displayTasks, initializeForm };
+  return { displayTasks, initializeForm, initializeProject,displayProjects
+
+   };
 };
 
 

@@ -1,4 +1,4 @@
-import {taskUI, displayTasks} from "./taskUI"
+import { taskUI, displayTasks } from "./taskUI";
 
 export const taskList = [
   {
@@ -17,8 +17,6 @@ export const taskList = [
   },
 ];
 
-
-
 export const taskLogic = () => {
   const taskForm = document.querySelector("#task-form");
 
@@ -26,7 +24,7 @@ export const taskLogic = () => {
     console.log("task created");
     return { title, description, due, priority, project };
   };
-  
+
   taskList.map((task) =>
     createTask(
       task.title,
@@ -37,14 +35,18 @@ export const taskLogic = () => {
     )
   );
 
-  const addTaskToList = (task) => {
-    taskList.push(task);
-    console.log("task added to tasklist:", taskList)
+  const addTaskToList = (arr, task) => {
+    arr.push(task);
+    console.log("task added to list:", arr);
+  };
+
+  const clearForm = (e) => {
+    e.target.reset();
   };
 
   const handleFormSubmit = () =>
     taskForm.addEventListener("submit", (e) => {
-      const display = taskUI()
+      const display = taskUI();
       e.preventDefault();
       const form = e.target;
 
@@ -57,12 +59,11 @@ export const taskLogic = () => {
 
       const newTask = createTask(title, description, due, priority, project);
 
-      addTaskToList(newTask);
-      display.displayTasks(taskList)
+      addTaskToList(taskList, newTask);
+      display.displayTasks(taskList);
+
+      clearForm(e);
     });
 
-  return { createTask, addTaskToList, taskList, handleFormSubmit };
+  return { createTask, addTaskToList, taskList, handleFormSubmit, clearForm };
 };
-
-
-  

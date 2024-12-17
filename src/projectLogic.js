@@ -1,17 +1,25 @@
+import { taskUI } from "./taskUI";
+import { taskLogic } from "./taskLogic";
 
-// export class Project {
-//     constructor(name) {
-//       this.name = name;
-//       this.id = crypto.randomUUID();
-//       this.tasks = [];
-//     }
+export const projectLogic = () => {
+  const logic = taskLogic();
+  const display = taskUI();
 
-//     addTask(newTask) {
-//       this.tasks.push(newTask)
-//     }
-//   }
+  const projectList = ["test project"];
 
+  const handleProjectSubmit = () => {
+    const projectForm = document.getElementById("project-form");
+   
 
+    projectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const value = form.formProject.value;
 
-
-
+      logic.addTaskToList(projectList, value);
+      display.displayProjects(value);
+      logic.clearForm(e)
+    });
+  };
+  return { projectList, handleProjectSubmit };
+};
