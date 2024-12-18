@@ -1,4 +1,4 @@
-import { taskUI, displayTasks } from "./taskUI";
+import { taskUI } from "./taskUI";
 
 export const taskList = [
   {
