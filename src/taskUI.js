@@ -32,16 +32,32 @@ export const taskUI = () => {
       due.textContent = task.due;
 
       const priority = taskDisplayClone.querySelector(".task-priority");
-      priority.textContent = task.priority;
+      task.priority ? priority.textContent = "Important" : priority.textContent = ""
 
+      const remove = taskDisplayClone.querySelector(".task-delete");
+      remove.addEventListener("click", (e) => {
+        const task = e.target.closest(".task-wrapper");
+        task.remove();
+      });
+
+      
       dashSection.appendChild(taskDisplayClone);
     });
   };
 
+  // create button to delete task
+  const removeTask = () => {
+    const removeButton = document.querySelector("task-delete")
+
+    removeButton.addEventListener("click", (e) => {
+      const closestTask = e.target.closest("task-wrapper")
+      closestTask.remove()
+    })
+
+  }
+
   //display project template
   const initializeProject = () => {
-    // const projectSection = document.getElementById("project-section");
-
     const projectTemplate = document.getElementById("project-template");
     const projectClone = projectTemplate.content.cloneNode(true);
 
@@ -51,10 +67,7 @@ export const taskUI = () => {
   //display projects
   const displayProjects = (value) => {
     const projManager = projectLogic();
-    const taskManager = taskLogic();
-    // const projectSection = document.getElementById("project-section");
     const button = document.createElement("button");
-    // button.classList.add(`project-${value}-button`);
     button.classList.add(`project-button`);
 
     button.textContent = value;
@@ -68,6 +81,7 @@ export const taskUI = () => {
     });
   };
 
+  // display tasks by project
   const displayFilteredProjects = (array) => {
 
     const existingContainer = document.querySelector(
@@ -106,6 +120,7 @@ export const taskUI = () => {
     projectSection.appendChild(taskContainer);
   };
 
+  // add project to dropdown menu
   const createProjectOptions = (arr) => {
     arr.forEach((proj) => {
       const selectInput = document.getElementById("project-select");

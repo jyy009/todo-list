@@ -10,7 +10,7 @@ let taskList = [
   },
   {
     title: "groceries",
-    description: "don't forget breat",
+    description: "don't forget bread",
     due: new Date(),
     priority: false,
     project: "test project",
@@ -51,6 +51,7 @@ export const taskLogic = () => {
       const description = form.description.value;
       const due = form.date.value;
       const priority = form.priority.checked;
+    
       const project = form.project.value;
       console.log("form values:", title, description, due, priority, project);
 
