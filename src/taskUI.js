@@ -1,9 +1,10 @@
-import { taskLogic, taskList } from "./taskLogic";
+import { taskLogic } from "./taskLogic";
 import { projectLogic } from "./projectLogic";
 
 export const taskUI = () => {
   const dashSection = document.querySelector("#dash-section");
   const taskSection = document.querySelector("#task-section");
+  const projectSection = document.getElementById("project-section");
 
   //display form template
   const initializeForm = () => {
@@ -39,7 +40,7 @@ export const taskUI = () => {
 
   //display project template
   const initializeProject = () => {
-    const projectSection = document.getElementById("project-section");
+    // const projectSection = document.getElementById("project-section");
 
     const projectTemplate = document.getElementById("project-template");
     const projectClone = projectTemplate.content.cloneNode(true);
@@ -50,40 +51,90 @@ export const taskUI = () => {
   //display projects
   const displayProjects = (value) => {
     const projManager = projectLogic();
-    const projectSection = document.getElementById("project-section");
+    const taskManager = taskLogic();
+    // const projectSection = document.getElementById("project-section");
     const button = document.createElement("button");
-    button.classList.add("project-name");
+    // button.classList.add(`project-${value}-button`);
+    button.classList.add(`project-button`);
+
     button.textContent = value;
+    console.log(value);
+
+    projectSection.appendChild(button);
 
     button.addEventListener("click", (e) => {
       e.preventDefault();
-      // projManager.handleCategoryButtonClick();
+      projManager.handleProjClick(value);
     });
-    projectSection.appendChild(button);
+  };
+
+  const displayFilteredProjects = (array) => {
+
+    const existingContainer = document.querySelector(
+      ".filtered-task-container"
+    );
+    if (existingContainer) {
+      existingContainer.remove();
+    }
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add("filtered-task-container");
+  taskContainer.textContent = "";
+    
+    
+    array.forEach((task) => {
+
+      const taskCard = document.createElement("div");
+      taskCard.classList.add("task-card");
+
+      const title = document.createElement("p");
+      title.textContent = task.title;
+
+      const description = document.createElement("p");
+      description.textContent = task.description;
+
+      const due = document.createElement("p");
+      due.textContent = task.due;
+
+
+      const priority = document.createElement("p");
+      priority.textContent = task.priority;
+
+      taskCard.append(title, description, due, priority)
+      taskContainer.appendChild(taskCard)
+    });
+  
+    projectSection.appendChild(taskContainer);
   };
 
   const createProjectOptions = (arr) => {
     arr.forEach((proj) => {
       const selectInput = document.getElementById("project-select");
 
-      const existingOption = Array.from(selectInput.options).find(
+      const optionExists = Array.from(selectInput.options).find(
         (option) => option.value === proj
       );
 
-      if (!existingOption) {
+      Array.from(selectInput.options).forEach((option) => {
+        if (option.value !== "" && !option.disabled) {
+          option.classList.add("proj-option");
+        }
+      });
+
+      if (!optionExists) {
         const optionElement = document.createElement("option");
-        optionElement.classList.toggle("proj-option");
+        optionElement.classList.add("proj-option");
         optionElement.textContent = proj;
         selectInput.appendChild(optionElement);
       }
     });
   };
-  // displayTasks(taskList)
+
   return {
     displayTasks,
     initializeForm,
     initializeProject,
     displayProjects,
     createProjectOptions,
+    displayFilteredProjects,
   };
 };

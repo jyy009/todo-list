@@ -1,10 +1,12 @@
 import "./styles.css";
-import { taskLogic, taskList } from "./taskLogic";
+import { taskLogic } from "./taskLogic";
 import { taskUI } from "./taskUI";
 import { projectLogic } from "./projectLogic";
 
 document.addEventListener("DOMContentLoaded", () => {
   const display = taskUI();
+  const { taskList } = taskLogic()
+
   display.initializeForm();
   display.initializeProject();
   display.displayTasks(taskList);
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   logic.handleFormSubmit();
 
   const projManager = projectLogic();
-  const { projectList } = projManager;
+  // const { projectList } = projManager;
+
   projManager.handleProjectSubmit();
-  projManager.setupProjectButtonListeners();
 });

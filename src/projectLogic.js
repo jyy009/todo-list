@@ -1,27 +1,21 @@
 import { taskUI } from "./taskUI";
-import { taskLogic } from "./taskLogic";
+import { taskLogic, taskList } from "./taskLogic";
 
 export const projectLogic = () => {
   const logic = taskLogic();
   const display = taskUI();
 
-  const projectList = [];
+  let projectList = [];
 
-  const handleCategoryButtonClick = (e) => {
-    const projButton = e.target.closest(".project-name");
-    if (projButton) {
-      e.preventDefault();
-      console.log(projButton.textContent);
-    }
+  const addProjectToList = (arr, proj) => {
+    const newArr = [...arr, proj];
+    console.log("project list", newArr);
+    return newArr;
   };
 
-  const setupProjectButtonListeners = () => {
-    const projectSection = document.getElementById("project-section");
-
-    projectSection.addEventListener("click",
-      handleCategoryButtonClick);
-    }
-  
+  const filterTasksByProject = (arr, value) => {
+    return arr.filter((item) => item.project === value);
+  };
 
   const handleProjectSubmit = () => {
     const projectForm = document.getElementById("project-form");
@@ -30,11 +24,13 @@ export const projectLogic = () => {
       e.preventDefault();
       const form = e.target;
       const value = form.formProject.value;
+      console.log("form value:", value);
+      console.log("e target value:", form);
 
       const existingProject = projectList.find((proj) => proj === value);
 
       if (!existingProject) {
-        logic.addTaskToList(projectList, value);
+        projectList = addProjectToList(projectList, value);
       } else {
         return;
       }
@@ -45,10 +41,19 @@ export const projectLogic = () => {
     });
   };
 
+  const handleProjClick = (value) => {
+    const currentTaskList = logic.getTasklist();
+    console.log("current task list:", currentTaskList);
+    const filteredTasks = filterTasksByProject(currentTaskList, value);
+    console.log("tasklist filtered by project", filteredTasks);
+    display.displayFilteredProjects(filteredTasks)
+  };
+
   return {
     projectList,
     handleProjectSubmit,
-    handleCategoryButtonClick,
-    setupProjectButtonListeners,
+    // createProjectButton,
+    filterTasksByProject,
+    handleProjClick,
   };
 };

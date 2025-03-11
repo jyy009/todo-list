@@ -1,6 +1,6 @@
 import { taskUI } from "./taskUI";
 
-export const taskList = [
+let taskList = [
   {
     title: "Walk dog",
     description: "Walk for an hour",
@@ -18,6 +18,7 @@ export const taskList = [
 ];
 
 export const taskLogic = () => {
+
   const taskForm = document.querySelector("#task-form");
 
   const createTask = (title, description, due, priority, project) => {
@@ -25,20 +26,16 @@ export const taskLogic = () => {
     return { title, description, due, priority, project };
   };
 
-  taskList.map((task) =>
-    createTask(
-      task.title,
-      task.description,
-      task.due,
-      task.priority,
-      task.project
-    )
-  );
+  const addTaskToList = (task) => {
+    console.log("task list before adding:", taskList);
+    const newArr = [...taskList, task];
+    console.log("task added to list:", newArr);
 
-  const addTaskToList = (arr, task) => {
-    arr.push(task);
-    console.log("task added to list:", arr);
+    return newArr;
   };
+
+ const getTasklist = () => taskList;
+  
 
   const clearForm = (e) => {
     e.target.reset();
@@ -59,11 +56,18 @@ export const taskLogic = () => {
 
       const newTask = createTask(title, description, due, priority, project);
 
-      addTaskToList(taskList, newTask);
+      taskList = addTaskToList(newTask);
       display.displayTasks(taskList);
 
       clearForm(e);
     });
 
-  return { createTask, addTaskToList, taskList, handleFormSubmit, clearForm };
+  return {
+    createTask,
+    addTaskToList,
+    handleFormSubmit,
+    clearForm,
+    taskList,
+    getTasklist,
+  };
 };
